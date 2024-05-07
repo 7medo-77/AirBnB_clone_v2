@@ -21,4 +21,4 @@ def do_pack():
 
     local("mkdir -p ./versions/")
     res = local("tar -cvzf versions/{} web_static".format(name_str))
-    print(res.stdout)
+    return (name_str)
