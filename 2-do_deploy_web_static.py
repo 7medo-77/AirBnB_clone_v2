@@ -1,25 +1,32 @@
 #!/usr/bin/python3
 """Python script which packs all files in
 /data/web_static into a compressed file"""
-from fabric.api import run
-from fabric.api import local
-from fabric.api import lcd
-from datetime import datetime
+from fabric.api import run, cd, env, put
+# from fabric.api import cd
+# from fabric.api import env
+# from fabric.api import put
+# from datetime import datetime
 
 
-def do_pack():
+def do_deploy(archive_path='none'):
     """
     Function to pack files in web_static into a compressed file
     """
-    time_now = datetime.now()
-    name_str = "web_static_{:04d}{:02d}{:02d}{:02d}{:02d}{:02d}.tgz".\
-        format(time_now.year, time_now.month,
-               time_now.day, time_now.hour,
-               time_now.minute, time_now.second)
-
+    env.hosts = ['54.82.134.192', '54.146.93.43']
     try:
-        local("mkdir -p ./versions/")
-        res = local("tar -cvzf versions/{} web_static".format(name_str))
+        with cd("/tmp"):
+            put("{}".format(archive_path), "/tmp/")
+
+            output_object = run("cat $(ls -t /tmp | awk 'NR==1')")
+            archive_name = output_object.stdout
+            raw_name = run("echo \"{}\" | cut -d '.' -f 1".format(archive_name)).stdout
+
+            run("mkdir -p /data/web_static/releases")
+            run("tar -xvf /tmp/{} -C /data/web_static/releases"\
+                .format(archive_name))
+            run("rm -f {}".format(archive_name))
+            run("rm -f /data/web_static/current")
+            run("ln -s -f /data/web_static/releases/{} /data/web_static/current".format(raw_name))
+            return (True)
     except Exception:
-        return None
-    return (name_str)
+        return False
