@@ -11,7 +11,7 @@ import time
 def do_pack():
     # time_component = time.localtime(time.time())
     time_now = datetime.now()
-    name_str = "web_static_{}{}{}{}{}{}.tgz".\
+    name_str = "web_static_{:04d}{:02d}{:02d}{:02d}{:02d}{:02d}.tgz".\
         format(time_now.year, time_now.month,
                time_now.day, time_now.hour,
                time_now.minute, time_now.second)
