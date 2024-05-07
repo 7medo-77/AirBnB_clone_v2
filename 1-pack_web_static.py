@@ -9,6 +9,9 @@ import time
 
 
 def do_pack():
+    """
+    Function to pack files in web_static into a compressed file
+    """
     # time_component = time.localtime(time.time())
     time_now = datetime.now()
     name_str = "web_static_{:04d}{:02d}{:02d}{:02d}{:02d}{:02d}.tgz".\
