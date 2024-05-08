@@ -29,12 +29,12 @@ def do_deploy(archive_path='none'):
             raw_name = run("echo \"{}\" | cut -d '.' -f 1"
                            .format(archive_name)).stdout
 
-            run("mkdir -p /data/web_static/releases/{}".format(raw_name))
-            run("tar -xvf /tmp/{} -C /data/web_static/releases/{}/"
+            run("sudo mkdir -p /data/web_static/releases/{}".format(raw_name))
+            run("sudo tar -xvf /tmp/{} -C /data/web_static/releases/{}"
                 .format(archive_name, raw_name))
-            run("rm -f {}".format(archive_name))
-            run("rm -f /data/web_static/current")
-            run("ln -s -f /data/web_static/releases/{}\
+            run("sudo rm -f {}".format(archive_name))
+            run("sudo rm -f /data/web_static/current")
+            run("sudo ln -s -f /data/web_static/releases/{}/web_static/\
                  /data/web_static/current".format(raw_name))
             return (True)
     except Exception:
