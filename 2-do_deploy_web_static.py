@@ -30,7 +30,7 @@ def do_deploy(archive_path='none'):
                            .format(archive_name)).stdout
 
             run("mkdir -p /data/web_static/releases/{}".format(raw_name))
-            run("tar -xvf /tmp/{} -C /data/web_static/releases/{}"
+            run("tar -xvf /tmp/{} -C /data/web_static/releases/{}/"
                 .format(archive_name, raw_name))
             run("rm -f {}".format(archive_name))
             run("rm -f /data/web_static/current")
