@@ -7,17 +7,19 @@ from fabric.api import run, cd, env, put
 # from fabric.api import put
 # from datetime import datetime
 
+env.hosts = ['54.82.134.192', '54.146.93.43']
+# env.user = 'ubuntu'
+# env.key_filename = '~/.ssh/school'
 
 def do_deploy(archive_path='none'):
     """
     Function to pack files in web_static into a compressed file
     """
-    env.hosts = ['54.82.134.192', '54.146.93.43']
     try:
         with cd("/tmp"):
             put("{}".format(archive_path), "/tmp/")
 
-            output_object = run("cat $(ls -t /tmp | awk 'NR==1')")
+            output_object = run("echo $(ls -t /tmp | awk 'NR==1')")
             archive_name = output_object.stdout
             raw_name = run("echo \"{}\" | cut -d '.' -f 1".format(archive_name)).stdout
 
