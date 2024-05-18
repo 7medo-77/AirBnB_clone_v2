@@ -33,8 +33,9 @@ def c_is(subpath):
     return ("C {}".format(string_to_print))
 
 
-@app.route('/python/<text>', strict_slashes=False, defaults={'text': 'is cool'})
-def python_text(text):
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python_text(text='is cool'):
     """
     Function which prints the phrase HBNB
     """
