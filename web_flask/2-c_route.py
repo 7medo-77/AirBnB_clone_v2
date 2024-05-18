@@ -23,13 +23,14 @@ def holberton():
     return ("HBNB")
 
 
-@app.route('/<path:subpath>', strict_slashes=False)
+@app.route('/c/<path:subpath>', strict_slashes=False)
 def c_is(subpath):
     """
     Function which prints the phrase HBNB
     """
     text_list = subpath.split(sep='_')
     string_to_print = " ".join(text_list)
+    # return ("C {}".format(string_to_print))
     return ("C {}".format(string_to_print))
 
 
