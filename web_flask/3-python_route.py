@@ -33,5 +33,15 @@ def c_is(subpath):
     return ("C {}".format(string_to_print))
 
 
+@app.route('/python/<text>', strict_slashes=False, defaults={'text': 'is cool'})
+def python_text(text):
+    """
+    Function which prints the phrase HBNB
+    """
+    text_list = text.split(sep='_')
+    string_to_print = " ".join(text_list)
+    return ("Python {}".format(string_to_print))
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
