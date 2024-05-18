@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """
 Flask instance with a routing to root
@@ -70,7 +69,8 @@ def odd_or_even(number):
         parity = 'even'
     else:
         parity = 'odd'
-    return render_template('6-number_odd_or_even.html', number=number, parity=parity)
+    return render_template('6-number_odd_or_even.html',
+                           number=number, parity=parity)
 
 
 if __name__ == '__main__':
