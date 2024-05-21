@@ -1,15 +1,15 @@
 {% extends "template_flask.html" %}
 	{% block body -%}
 		<H1>States</H1>
-	    <ul>
+	    <UL>
       		{% for state in states.values()|sort(attribute='name') %}
-      		<li>{{ state.id }}: <b>{{ state.name }}</b>
-			<ul>
+      		<LI>{{ state.id }}: <b>{{ state.name }}</b>
+			<UL>
           			{% for city in state.cities|sort(attribute='name') %}
-	  			<li>{{ city.id }}: <b>{{ city.name }}</b></li>
-	  			{% endfor %}
-			</ul>
-      		</li>
+	  					<LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+	  				{% endfor %}
+			</UL>
+      		</LI>
       		{% endfor %}
-	    </ul>
+	    </UL>
 	{% endblock %}
