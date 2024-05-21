@@ -1,6 +1,3 @@
-{% extends "template_flask.html" %}
-	{% block body -%}
-		<H1>States</H1>
 	    <ul>
       		{% for state in states.values()|sort(attribute='name') %}
       		<li>{{ state.id }}: <b>{{ state.name }}</b>
@@ -12,4 +9,3 @@
       		</li>
       		{% endfor %}
 	    </ul>
-	{% endblock %}
