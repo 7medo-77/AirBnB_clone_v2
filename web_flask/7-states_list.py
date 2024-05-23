@@ -78,7 +78,7 @@ def odd_or_even(number):
 @app.route("/states_list", strict_slashes=False)
 def display_states():
     """Render state_list html page to display States created"""
-    states = storage.all()
+    states = storage.all(State).values()
     return render_template('7-states_list.html', states=states)
 
 
