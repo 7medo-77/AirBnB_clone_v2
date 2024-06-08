@@ -14,6 +14,7 @@ from datetime import datetime
 
 env.hosts = ['54.82.134.192', '54.146.93.43']
 
+
 def do_pack():
     """
     Function to pack files in web_static into a compressed file
