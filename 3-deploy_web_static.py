@@ -1,17 +1,14 @@
 #!/usr/bin/python3
-"""Python script which packs all files in
-/data/web_static into a compressed file"""
-from fabric.api import (run,
-                        cd,
-                        env,
-                        put,
+"""
+Python script which packs all files in
+/data/web_static into a compressed file
+"""
+from fabric.api import (run, cd,
+                        env, put,
                         local
                         )
 import importlib
 from os import path
-
-
-# from datetime import datetime
 
 
 env.hosts = ['54.82.134.192', '54.146.93.43']
