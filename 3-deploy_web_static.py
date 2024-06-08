@@ -23,6 +23,7 @@ def deploy(archive_path='none'):
     """
     Function to pack files in web_static into a compressed file
     """
+
     archive = do_pack()
     if (archive):
         return do_deploy(archive)
