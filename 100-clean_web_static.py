@@ -8,7 +8,7 @@ from fabric.api import (run, cd,
                         )
 
 
-env.hosts = ['54.82.134.192', '54.146.93.43']
+# env.hosts = ['54.82.134.192', '54.146.93.43']
 
 
 def do_clean(number=0):
@@ -17,18 +17,26 @@ def do_clean(number=0):
     the archive in the versions directory
     and in the releases directory remotely
     """
-    numberOfVersions = int(local("ls -t ./versions | wc -l").stdout)
-    listRemoveFiles = local("ls -t ./versions | tail -{}"
-                            .format(numberOfVersions - 1
-                                    if number <= 1
-                                    else numberOfVersions - number)).stdout
-    local("rm -f {}".format(listRemoveFiles))
+    numberOfVersions = local("ls -t ./versions | wc -l").stdout
+    print(numberOfVersions)
+    print("print")
 
-    with cd("/data/web_static/releases/"):
-        numberOfReleases = int(run("ls -t /data/web_static/releases/\
-                            | wc -l").stdout)
-        listRemoveReleases = local("ls -t | tail -{}"
-                                   .format(numberOfReleases - 1
-                                           if number <= 1 else
-                                           numberOfReleases - number)).stdout
-        local("rm -rf {}".format(listRemoveReleases))
+    # listRemoveFiles = local("ls -t ./versions | tail -{}"
+    #                         .format(numberOfVersions - 1
+    #                                 if number <= 1
+    #                                 else numberOfVersions - number)).stdout
+
+    listRemoveFiles = local("ls -t ./versions | tail -{}"
+                            .format(numberOfVersions)).stdout
+
+    print(listRemoveFiles)
+
+    # local("rm -f {}".format(listRemoveFiles))
+    #
+    # with cd("/data/web_static/releases/"):
+    #     numberOfReleases = int(run("ls -t | wc -l").stdout)
+    #     listRemoveReleases = local("ls -t | tail -{}"
+    #                                .format(numberOfReleases - 1
+    #                                        if number <= 1 else
+    #                                        numberOfReleases - number)).stdout
+    #     local("rm -rf {}".format(listRemoveReleases))
